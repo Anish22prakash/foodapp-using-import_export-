@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD of DAY</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        #headline,#headline2{
+            text-align: center;
+            color: teal
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+
+    </div>
+    <h1 id="headline">
+        FOOD OF DAY
+    </h1 >
+    <h1 id="headline2">
+        GET UP TO 20% OFF ON FOOD
+    </h1>
+    <div id="fofday">
+
+    </div>
+    
+</body>
+</html>
+<script type="module">
+     import navbar from "./navbar/navbar.js"
+     import display from "./navbar/details/append.js"
+  
+  document.getElementById("navbar").innerHTML=navbar()
+  let count= document.getElementById("fofday")
+var url="https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian"
+  let getdata= async() =>{
+  let res= await fetch(url)
+  let data= await res.json()
+  console.log(data)
+  display(data.meals,count)
+  }
+  getdata()
+
+</script>

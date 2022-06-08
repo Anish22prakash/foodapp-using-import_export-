@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        #searchspc{
+            margin-top: 2%;
+           margin-left: 20%;
+           width: 50%;
+           height: 30px;
+           border-radius: 5px;
+           font-size: 20px;
+           
+        }
+        #welcome{
+           margin-top: 2%;
+           margin-left: 40%;
+        }
+        #serbut{
+            width: 5%;
+           height: 35px;
+           border-radius: 5px;
+           font-size: 20px;
+        }
+        #mealbox{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        #mealimg{
+            height: 50%;
+            width: 100%;
+        }
+        #cardbox{
+            border: 1px solid;
+            height: 200px;
+            width: 10%;
+            margin-top: 3%;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+       
+      
+    
+    </div>
+  
+   <h1 id="welcome">Welcome To Food Hub</h1>
+    <div>
+        <input
+         type="text"
+         
+         name="searchbar"
+         id="searchspc"
+         placeholder="Search Food"
+        />
+        <button id="serbut">Search</button>
+    </div>
+    <div id="mealbox">
+
+    </div>
+</body>
+</html>
+
+
+<script type="module">
+    
+
+    import navbar from "./navbar/navbar.js"
+    import display from "./navbar/details/append.js"
+   
+  
+    document.getElementById("navbar").innerHTML=navbar()
+
+
+
+    document.getElementById("serbut").addEventListener("click", main);
+
+	async function main() {
+	var query=document.getElementById("searchspc").value 
+    //console.log(query)
+    let url =`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
+
+    let res= await fetch(url)
+    let data= await res.json()
+   // console.log(data.meals)
+   let count=document.getElementById("mealbox")
+   display(data.meals,count)
+
+	}
+    
+  
+   
+  
+  
+
+</script>
